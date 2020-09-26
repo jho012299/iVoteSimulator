@@ -13,4 +13,21 @@ public class SingleChoice extends Question {
         return answer.length() == 1 && options.contains(answer);
     }
 
+    @Override
+    public void printQuestionResult(ArrayList<String> answers) {
+        int[] resultCount = new int[options.size()];
+        for(int i = 0; i < options.size(); i++) {
+            for (String answer : answers) {
+                if (options.get(i).equals(answer)) {
+                    resultCount[i]++;
+                }
+            }
+        }
+
+        for(int i = 0; i < options.size(); i++) {
+            System.out.print(options.get(i) + ": " + resultCount[i] + "  ");
+        }
+        System.out.println("");
+    }
+
 }

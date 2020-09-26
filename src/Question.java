@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public abstract class Question{
     private String question;
 
@@ -12,5 +14,7 @@ public abstract class Question{
     }
 
     public abstract boolean validateAnswer(String answer); // checks if answer submitted is correct type
+
+    public abstract void printQuestionResult(ArrayList<String> answers);
 
 }

@@ -3,15 +3,27 @@ import java.util.UUID;
 public class Student {
     private String id;
     private boolean hasAnswered;
-    // private String answer;
+    private String answer;
 
     public Student() {
         id = UUID.randomUUID().toString();
         hasAnswered = false;
     }
 
+    public void setAnswer(String a) {
+        answer = a;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
     public String getId() {
         return id;
+    }
+
+    public void setHasAnswered(boolean h) {
+        hasAnswered = h;
     }
 
     public boolean getHasAnswered() {
