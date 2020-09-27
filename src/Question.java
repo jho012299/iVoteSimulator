@@ -15,6 +15,6 @@ public abstract class Question{
 
     public abstract boolean validateAnswer(String answer); // checks if answer submitted is correct type
 
-    public abstract void printQuestionResult(ArrayList<String> answers);
+    public abstract void printQuestionResult(ArrayList<String> answers); // prints result of question
 
 }

@@ -6,9 +6,11 @@ public class Student {
     private String answer;
 
     public Student() {
-        id = UUID.randomUUID().toString();
-        hasAnswered = false;
+        id = UUID.randomUUID().toString(); // students given randomly generated ID
+        hasAnswered = false; // tracks whether students have answered already
     }
+
+    // setters and getters
 
     public void setAnswer(String a) {
         answer = a;
@@ -30,7 +32,4 @@ public class Student {
         return hasAnswered;
     }
 
-    // hasAnswered: whether the student has answered the question or not
-    // method to reinitialize hasAnswered to false
-    // method to reinitialize hasAnswered to true
 }

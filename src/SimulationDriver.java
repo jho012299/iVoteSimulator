@@ -19,42 +19,40 @@ public class SimulationDriver {
         multiChoice.add("C");
         multiChoice.add("D");
 
-        VotingService vote = new VotingService();
-        vote.addSingleQuestion("What is the biggest ocean in the world?", singleChoice);
+        VotingService vote = new VotingService(); // initialize VotingService
+
+        vote.addStudent(); // add roster of students
         vote.addStudent();
         vote.addStudent();
-        vote.addStudent();
-        vote.submitAnswer(vote.getStudentAt(0), "A", 0);
+
+        vote.addSingleQuestion("Which ocean is the largest ocean in the world?", singleChoice); //
+        vote.submitAnswer(vote.getStudentAt(0), "A", 0); // answer submission process
         vote.submitAnswer(vote.getStudentAt(1), "B", 0);
         vote.submitAnswer(vote.getStudentAt(2), "C", 0);
-        vote.printResults(0);
+        vote.printResults(0); // prints answers students selected
 
-        vote.reset();
+        vote.reset(); // clears Student answers, hasAnswered flag, and clears submitted answers list
 
-        vote.addSingleQuestion("Dogs are real.", trueFalse);
+        vote.addSingleQuestion("Dogs are real.", trueFalse); // only has two options
         vote.submitAnswer(vote.getStudentAt(0), "A", 1);
         vote.submitAnswer(vote.getStudentAt(1), "B", 1);
-        vote.submitAnswer(vote.getStudentAt(0), "B", 1);
+        vote.submitAnswer(vote.getStudentAt(2), "F", 1); // tests invalid answers
         vote.printResults(1);
 
         vote.reset();
 
-        vote.addMultiQuestion("What of the following are true?", multiChoice);
+        vote.addMultiQuestion("Which of the following are true?", multiChoice); // can have multiple answers
         vote.submitAnswer(vote.getStudentAt(0), "ABC", 2);
         vote.submitAnswer(vote.getStudentAt(1), "BC", 2);
-        vote.submitAnswer(vote.getStudentAt(0), "CDA", 2);
+        vote.submitAnswer(vote.getStudentAt(2), "CDA", 2);
         vote.printResults(2);
 
         vote.reset();
 
-        vote.addMultiQuestion("What materials do you use to craft a Diamond Sword?", multiChoice);
+        vote.addMultiQuestion("What are the components of a BLT?", multiChoice);
         vote.submitAnswer(vote.getStudentAt(0), "DAB", 3);
         vote.submitAnswer(vote.getStudentAt(1), "CAB", 3);
-        vote.submitAnswer(vote.getStudentAt(0), "BAD", 3);
+        vote.submitAnswer(vote.getStudentAt(0), "BAD", 3); // tests student resubmission
         vote.printResults(3);
     }
 }
-
-// use ONLY for "replacing" the UI
-// driver calls all the methods from VotingService
-// generate students here bc it's like a "generate students" button on a UI

@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 public class VotingService {
-    private ArrayList<Student> studentList;
-    private ArrayList<Question> questionBank;
-    private ArrayList<String> answers;
+    private ArrayList<Student> studentList; // list of participating students
+    private ArrayList<Question> questionBank; // list of questions available to ask
+    private ArrayList<String> answers; // list of submitted answers
 
     public VotingService() {
         studentList = new ArrayList<>();
@@ -13,7 +13,7 @@ public class VotingService {
 
     public void addStudent(){ // generates students to add to list
         studentList.add(new Student());
-    }
+    } // generates a new student
 
     public void addSingleQuestion(String q, ArrayList<String> options) { // adds Single Choice Question to bank
         questionBank.add(new SingleChoice(q, options));
@@ -25,17 +25,17 @@ public class VotingService {
 
     public void submitAnswer(String id, String answer, int questionNum){
         if(!questionBank.get(questionNum).validateAnswer(answer)) {
-            System.out.println("Student ID: " + id + " submitted an invalid answer.");
+            System.out.println("Student ID: " + id + " submitted an invalid answer."); // checks if answer can be accepted or not
             return;
         }
 
         for(Student student: studentList) {
             if(student.getId().equals(id)) {
                 if(student.getHasAnswered()) {
-                    System.out.println("Student ID: " + id  + " has resubmitted their answer.");
+                    System.out.println("Student ID: " + id  + " has resubmitted their answer."); // notifies whenever a student resubmits
                 }
                 student.setAnswer(answer);
-                student.setHasAnswered(true);
+                student.setHasAnswered(true); // confirms that student has answered and will check if student submits again
             }
         }
     }
@@ -43,49 +43,22 @@ public class VotingService {
     public void printResults(int questionNum){
         for(Student student: studentList) {
             if(student.getAnswer() != null) {
-                answers.add(student.getAnswer());
+                answers.add(student.getAnswer()); // adds answers from students that answered
             }
         }
-        System.out.println(questionBank.get(questionNum).getQuestion());
-        questionBank.get(questionNum).printQuestionResult(answers);
+        System.out.println(questionBank.get(questionNum).getQuestion()); // prints question
+        questionBank.get(questionNum).printQuestionResult(answers); // prints results
     }
 
     public String getStudentAt(int i) {
-        return studentList.get(i).getId();
+        return studentList.get(i).getId(); // returns the id of a student through index
     }
 
-    public void reset() {
+    public void reset() { // resets student and wipes answer bank
         for(Student student: studentList) {
             student.setAnswer(null);
             student.setHasAnswered(false);
         }
         answers.clear();
     }
-
-    // no hash map, use regular arraylist or array of students
-    // bank of questions (arraylist? array? how to add question to bank?)
-    // list of students; how to add student to roster? need methods
-    // store answers
-
-    /*// "When a student submits an answer, the program : "
-public void submitAnswer(String studentId, String answer, int questionNum){
-
-  // "it should also make sure the answer is a valid answer"
-  if(!questions.get(questionNum).validateAnswer(answer)){
-    sout("Student " + studentId + " did not give a valid answer.");
-    return;
-  }
-
-  // "Let me know if the user already answered and changed their mind"
-  for( Student stu: ArrayList<Student>){
-    if(stu.getID().equals(studentId)){
-      if(stu.hasAnswered()){
-        sout("Student " + studentId + " rewrote their answer!");
-      }
-      stu.setAnswer(answer);
-    }
-
-  }
-}*/
-
 }
