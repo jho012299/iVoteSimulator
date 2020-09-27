@@ -3,17 +3,17 @@ import java.util.ArrayList;
 public class SimulationDriver {
 
     public static void main(String[] args) {
-        ArrayList<String> trueFalse = new ArrayList<>();
+        ArrayList<String> trueFalse = new ArrayList<>(); // creates options for a true and false question
         trueFalse.add("A");
         trueFalse.add("B");
 
-        ArrayList<String> singleChoice = new ArrayList<>();
+        ArrayList<String> singleChoice = new ArrayList<>(); // creates options for a single answer multiple choice question
         singleChoice.add("A");
         singleChoice.add("B");
         singleChoice.add("C");
         singleChoice.add("D");
 
-        ArrayList<String> multiChoice = new ArrayList<>();
+        ArrayList<String> multiChoice = new ArrayList<>(); // creates options for a multiple answer multiple choice question
         multiChoice.add("A");
         multiChoice.add("B");
         multiChoice.add("C");
@@ -42,8 +42,16 @@ public class SimulationDriver {
         vote.addMultiQuestion("What of the following are true?", multiChoice);
         vote.submitAnswer(vote.getStudentAt(0), "ABC", 2);
         vote.submitAnswer(vote.getStudentAt(1), "BC", 2);
-        vote.submitAnswer(vote.getStudentAt(2), "CDA", 2);
+        vote.submitAnswer(vote.getStudentAt(0), "CDA", 2);
         vote.printResults(2);
+
+        vote.reset();
+
+        vote.addMultiQuestion("What materials do you use to craft a Diamond Sword?", multiChoice);
+        vote.submitAnswer(vote.getStudentAt(0), "DAB", 3);
+        vote.submitAnswer(vote.getStudentAt(1), "CAB", 3);
+        vote.submitAnswer(vote.getStudentAt(0), "BAD", 3);
+        vote.printResults(3);
     }
 }
 

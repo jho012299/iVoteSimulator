@@ -14,15 +14,17 @@ public class MultipleChoice extends Question {
     }
 
     @Override
-    public void printQuestionResult(ArrayList<String> answers) {
-        int[] resultCount = new int[options.size()];
-        for(int i = 0; i < options.size(); i++) {
-            for (String answer : answers) {
-                if (options.get(i).equals(answer)) {
-                    resultCount[i]++;
+        public void printQuestionResult(ArrayList<String> answers) {
+            int[] resultCount = new int[options.size()];
+            for(int i = 0; i < options.size(); i++) {
+                for (int j = 0; j < answers.size(); j++) {
+                    for(int k = 0; k < answers.get(j).length(); k++){
+                        if (options.get(i).charAt(0) == answers.get(j).charAt(k)) {
+                            resultCount[i]++;
+                        }
+                    }
                 }
             }
-        }
 
         for(int i = 0; i < options.size(); i++) {
             System.out.print(options.get(i) + ": " + resultCount[i] + "  ");

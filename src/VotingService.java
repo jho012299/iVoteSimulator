@@ -25,14 +25,14 @@ public class VotingService {
 
     public void submitAnswer(String id, String answer, int questionNum){
         if(!questionBank.get(questionNum).validateAnswer(answer)) {
-            System.out.println("Student id: " + id + " submitted an invalid answer.");
+            System.out.println("Student ID: " + id + " submitted an invalid answer.");
             return;
         }
 
         for(Student student: studentList) {
             if(student.getId().equals(id)) {
                 if(student.getHasAnswered()) {
-                    System.out.println("Student id: " + id  + " has resubmitted their answer.");
+                    System.out.println("Student ID: " + id  + " has resubmitted their answer.");
                 }
                 student.setAnswer(answer);
                 student.setHasAnswered(true);
@@ -42,7 +42,9 @@ public class VotingService {
 
     public void printResults(int questionNum){
         for(Student student: studentList) {
-            answers.add(student.getAnswer());
+            if(student.getAnswer() != null) {
+                answers.add(student.getAnswer());
+            }
         }
         System.out.println(questionBank.get(questionNum).getQuestion());
         questionBank.get(questionNum).printQuestionResult(answers);
